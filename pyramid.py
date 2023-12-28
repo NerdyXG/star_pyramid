@@ -27,7 +27,7 @@
 
 
 
-def bottom_top(n):
+def bottom_top(n, step):
 	num_of_whitespace = 0
 	for i in range(n, 0, step):
 		print(num_of_whitespace * " ", end="")
@@ -37,13 +37,13 @@ def bottom_top(n):
 		print()
 
 
-def top_down(n):
+def top_down(n, step):
 	num_of_whitespace = n - 1
 	for i in range(1, n + 1, step):
 		print(num_of_whitespace * " ", end="")
 		for j in range(i):
 			print("*", end=" ")
-		num_of_whitespace += whitespace
+		num_of_whitespace -= whitespace
 		print()
 
 
@@ -87,8 +87,8 @@ whitespace = step
 # decision tree to decide the printing style
 if step > 0:
 	if __name__ == "__main__":
-		top_down(n)
+		top_down(n, step)
 
 else:
 	if __name__ == "__main__":
-		bottom_top(n)
+		bottom_top(n, step)
