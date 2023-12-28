@@ -11,23 +11,47 @@
     *
 
 	 What did I do?
+      *
+    * * *
+  * * * * *
+* * * * * * *
 
+    *
+  * * *
+* * * * *
 	 I printed n number of stars
+
+	whitespace = +ve step CONSTANT
+	num_of_whitespace = VARIES INCREMENTALLY OR DECREMENTALLY
 """
 
-def print_stars(n):
-	whitespace = 0
+
+
+def bottom_top(n):
+	num_of_whitespace = 0
 	for i in range(n, 0, step):
-		print(whitespace * " ", end="")
+		print(num_of_whitespace * " ", end="")
 		for j in range(i):
 			print("*", end=" ")
-		whitespace += num_of_whitespace
+		num_of_whitespace -= whitespace
 		print()
 
 
-print("n = the maximum number of stars in a row, usually the first row")
-print("step = by how many digits should the stars decrease")
+def top_down(n):
+	num_of_whitespace = n - 1
+	for i in range(1, n + 1, step):
+		print(num_of_whitespace * " ", end="")
+		for j in range(i):
+			print("*", end=" ")
+		num_of_whitespace += whitespace
+		print()
+
+
+
+print("n = the maximum number of stars in a row, usually the first or last row")
+print("step = by how many digits should the stars decrease or increase")
 print("floating point numbers are rounded down to their nearest int")
+print("use +ve step for a top-down pyramid, and -ve step for a bottom_top pyramid")
 print("------------------------")
 
 
@@ -51,18 +75,20 @@ while True:
 	except ValueError:
 		print("Non-numeric symbols are not supported!")
 	else:
-		if step >= n:
-			print(f"Step must be lesser than n, {n}...")
+		if step > n:
+			print(f"step must be lesser than n, {n}")
+		elif step == 0:
+			print("step cannot be zero (0)")
 		else:
 			break
 
 
-# ensures that step is negative
+whitespace = step
+# decision tree to decide the printing style
 if step > 0:
-	num_of_whitespace = step
-	step = 0 - step
+	if __name__ == "__main__":
+		top_down(n)
 
 else:
-	num_of_whitespace = 0 - step
-
-print_stars(n)
+	if __name__ == "__main__":
+		bottom_top(n)
